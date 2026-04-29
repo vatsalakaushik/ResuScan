@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ResuScan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="home-bg">
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <h3>ResuScan</h3>
+
+    {% if user %}
+        <div>
+            Hi, {{ user }} 
+            <a href="/logout">Logout</a>
+        </div>
+    {% else %}
+        <button onclick="openModal()">Login</button>
+    {% endif %}
+</div>
+
+<!-- HERO -->
+<section class="hero center">
+    <h1>ResuScan</h1>
+    <p>AI-powered resume screening system</p>
+    <a href="/app" class="btn">Start Screening</a>
+</section>
+
+<!-- INFO -->
+<section class="info center">
+    <h2>How It Works</h2>
+    <p>Upload → AI analyzes → Get result instantly</p>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="card">Fast Prediction</div>
+    <div class="card">AI Model</div>
+    <div class="card">Multi Format</div>
+</section>
+
+<footer>
+    © 2026 ResuScan <br>
+    Email: support@resuscan.com
+</footer>
+
+<!-- MODAL -->
+<div id="authModal" class="modal">
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">&times;</span>
+
+<div id="loginForm">
+<form action="/login" method="post">
+<input type="email" name="email" placeholder="Email" required>
+<input type="password" name="password" placeholder="Password" required>
+<button type="submit">Login</button>
+</form>
+<p onclick="showSignup()">Sign Up</p>
+</div>
+
+<div id="signupForm" style="display:none;">
+<form action="/signup" method="post">
+<input type="text" name="name" placeholder="Name" required>
+<input type="text" name="phone" placeholder="Phone" required>
+<input type="email" name="email" placeholder="Email" required>
+<input type="password" name="password" placeholder="Password" required>
+<button type="submit">Sign Up</button>
+</form>
+<p onclick="showLogin()">Login</p>
+</div>
+
+</div>
+</div>
+
+<script>
+function openModal(){ document.getElementById("authModal").style.display="flex"; }
+function closeModal(){ document.getElementById("authModal").style.display="none"; }
+function showSignup(){ loginForm.style.display="none"; signupForm.style.display="block"; }
+function showLogin(){ signupForm.style.display="none"; loginForm.style.display="block"; }
+</script>
+
+</body>
+</html>

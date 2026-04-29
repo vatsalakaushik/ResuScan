@@ -1,0 +1,3 @@
+*.pkl
+users.csv
+__pycache__/
