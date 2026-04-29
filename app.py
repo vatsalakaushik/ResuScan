@@ -1,23 +1,21 @@
-import os
-import requests
-
-def download_file(url, filename):
-    if not os.path.exists(filename):
-        print(f"Downloading {filename}...")
-        r = requests.get(url)
-        with open(filename, 'wb') as f:
-            f.write(r.content)
-
-download_file("https://drive.google.com/uc?export=download&id=1DhHBsbLz72ZRd2gkmKu9ursCBWJLyx1x", "clf.pkl")
-download_file("https://drive.google.com/uc?export=download&id=1yBYV1xnvwaUSlpwPk6bEOMXdxtnD89Es", "encoder.pkl")
-download_file("https://drive.google.com/uc?export=download&id=1CizDU9l-Yazrcai5Ja-b3tq4vk4N1J8v", "tfidf.pkl")
-
 from flask import Flask, render_template, request, redirect, session
 import pickle
 import PyPDF2
 import docx
 import csv
 import os
+import gdown
+
+
+def download_file(file_id, filename):
+    if not os.path.exists(filename):
+        print(f"Downloading {filename}...")
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, filename, quiet=False)
+download_file("1CizDU9l-Yazrcai5Ja-b3tq4vk4N1J8v", "tfidf.pkl")
+download_file("1DhHBsbLz72ZRd2gkmKu9ursCBWJLyx1x", "clf.pkl")
+download_file("1yBYV1xnvwaUSlpwPk6bEOMXdxtnD89Es", "encoder.pkl")
+
 
 app = Flask(__name__)
 app.secret_key = "resuscan_secret_key"
