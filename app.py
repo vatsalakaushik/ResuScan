@@ -7,9 +7,9 @@ def download_file(url, filename):
         r = requests.get(url)
         with open(filename, 'wb') as f:
             f.write(r.content)
-download_file("https://drive.google.com/file/uc?1CizDU9l-Yazrcai5Ja-b3tq4vk4N1J8v", "tfidf.pkl")
-download_file("https://drive.google.com/file/uc?1DhHBsbLz72ZRd2gkmKu9ursCBWJLyx1x", "clf.pkl")
-download_file("https://drive.google.com/file/uc?1yBYV1xnvwaUSlpwPk6bEOMXdxtnD89Es", "encoder.pkl")
+download_file("https://drive.google.com/file/uc?export=download&id=1CizDU9l-Yazrcai5Ja-b3tq4vk4N1J8v", "tfidf.pkl")
+download_file("https://drive.google.com/file/uc?export=download&id=1DhHBsbLz72ZRd2gkmKu9ursCBWJLyx1x", "clf.pkl")
+download_file("https://drive.google.com/file/uc?export=download&id=1yBYV1xnvwaUSlpwPk6bEOMXdxtnD89Es", "encoder.pkl")
 
 
 from flask import Flask, render_template, request, redirect, session
